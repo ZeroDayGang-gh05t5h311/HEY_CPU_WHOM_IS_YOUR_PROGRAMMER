@@ -1,0 +1,610 @@
+/*
+============================================================
+                C LANGUAGE CHEAT SHEET
+============================================================
+This file is BOTH
+1) A working C program
+2) A detailed explanation of core and advanced C concepts
+Compile:
+    gcc c_cheatsheet.c -o cheat
+Run:
+    ./cheat
+============================================================
+/*
+============================================================
+                C LANGUAGE CHEAT SHEET
+============================================================
+This file is BOTH
+1) A working C program
+2) A detailed explanation of core C concepts
+Compile:
+    gcc c_cheatsheet.c -o cheat
+Run:
+    ./cheat
+============================================================
+                    1. BASIC STRUCTURE
+============================================================
+Every C program starts with a main() function.
+Execution begins in main().
+We include libraries using #include.
+These give access to pre-written functions.
+#include <stdio.h>   // For input/output (printf, scanf)
+#include <stdlib.h>  // For rand(), srand(), malloc(), exit()
+#include <time.h>    // For time() used in random seeding
+============================================================
+                    2. DATA TYPES
+============================================================
+C is statically typed.
+You must declare the type of every variable.
+Basic data types:
+int         -> integer (usually 4 bytes)
+float       -> decimal (single precision)
+double      -> decimal (double precision, more accurate)
+char        -> single character
+void        -> no type / no return
+Modifiers:
+short       -> smaller integer
+long        -> larger integer
+unsigned    -> only positive values
+Examples:
+*/
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <string.h>
+/* GLOBAL VARIABLES */
+int globalVariable = 100;           // Basic demo global
+int global_initialized = 42;        // Advanced demo global
+int global_uninitialized;            // BSS segment
+/* STRUCT DEFINITIONS */
+struct Person {
+    char name[50];
+    int age;
+    double height;
+};
+/* FUNCTION DECLARATIONS - BASIC */
+int add(int a, int b);
+void printMessage(void);
+int modifyValue(int x);
+int generateRandom(int min, int max);
+/* FUNCTION DECLARATIONS - ADVANCED */
+void pointerBasics();
+void pointerArithmetic();
+void stackVsHeap();
+void dynamicMemoryDemo();
+void structDemo();
+/* ===========================================================
+                    FUNCTION DEFINITIONS - BASIC
+=========================================================== */
+int add(int a, int b) {
+    return a + b;
+}
+void printMessage(void) {
+    printf("Hello from function!\n");
+}
+int modifyValue(int x) {
+    x = x * 2;
+    return x;
+}
+int generateRandom(int min, int max) {
+    return rand() % (max - min + 1) + min;
+}
+/* ===========================================================
+                  FUNCTION DEFINITIONS - ADVANCED
+=========================================================== */
+void pointerBasics() {
+    printf("=== POINTER BASICS ===\n");
+    int x = 10;
+    int *ptr = &x;
+    printf("Value of x: %d\n", x);
+    printf("Address of x: %p\n", (void*)&x);
+    printf("ptr stores: %p\n", (void*)ptr);
+    printf("Value at ptr (*ptr): %d\n", *ptr);
+    *ptr = 20;
+    printf("Modified x through pointer: %d\n\n", x);
+}
+void pointerArithmetic() {
+    printf("=== POINTER ARITHMETIC ===\n");
+    int arr[3] = {10, 20, 30};
+    int *ptr = arr;
+    printf("arr[0]: %d\n", *ptr);
+    printf("arr[1]: %d\n", *(ptr + 1));
+    printf("arr[2]: %d\n\n", *(ptr + 2));
+}
+void stackVsHeap() {
+    printf("=== STACK VS HEAP ===\n");
+    int stackVar = 5;
+    int *heapVar = malloc(sizeof(int));
+    if (!heapVar) {
+        printf("Memory allocation failed!\n");
+        return;
+    }
+    *heapVar = 100;
+    printf("Stack variable value: %d\n", stackVar);
+    printf("Heap variable value: %d\n", *heapVar);
+    free(heapVar);
+    printf("Heap memory freed.\n\n");
+}
+void dynamicMemoryDemo() {
+    printf("=== DYNAMIC MEMORY ===\n");
+    int *array = malloc(3 * sizeof(int));
+    if (!array) return;
+    for (int i = 0; i < 3; i++) array[i] = i * 10;
+
+    printf("Original array:\n");
+    for (int i = 0; i < 3; i++) printf("%d ", array[i]);
+
+    array = realloc(array, 5 * sizeof(int));
+    printf("\nResized array (first 3 values preserved):\n");
+    for (int i = 0; i < 3; i++) printf("%d ", array[i]);
+
+    free(array);
+    printf("\nMemory freed.\n\n");
+}
+void structDemo() {
+    printf("=== STRUCT DEMO ===\n");
+    struct Person p1;
+    strcpy(p1.name, "Alice");
+    p1.age = 30;
+    p1.height = 5.6;
+    printf("Name: %s\n", p1.name);
+    printf("Age: %d\n", p1.age);
+    printf("Height: %.1f\n", p1.height);
+    printf("Size of struct Person: %lu bytes\n\n", sizeof(struct Person));
+}
+/* ===========================================================
+                            MAIN
+=========================================================== */
+int main() {
+    /* ================== BASIC DEMO ================== */
+    printf("=== BASIC C CONCEPTS ===\n\n");
+    int age = 25;
+    float height = 5.9f;
+    double pi = 3.1415926535;
+    char grade = 'A';
+    printf("Age: %d\n", age);
+    printf("Height: %.1f\n", height);
+    printf("Pi: %.5lf\n", pi);
+    printf("Grade: %c\n\n", grade);
+    if (age >= 18) printf("Adult\n\n");
+    else printf("Minor\n\n");
+    for (int i = 0; i < 3; i++) printf("For loop iteration: %d\n", i);
+    printf("\n");
+    int count = 0;
+    while (count < 3) {
+        printf("While loop iteration: %d\n", count);
+        count++;
+    }
+    printf("\n");
+    int result = add(5, 3);
+    printf("5 + 3 = %d\n\n", result);
+    int original = 10;
+    int changed = modifyValue(original);
+    printf("Original value: %d\n", original);
+    printf("Returned modified value: %d\n\n", changed);
+    srand(time(NULL));
+    int randomNumber = generateRandom(1, 10);
+    printf("Random number (1-10): %d\n\n", randomNumber);
+    int userNumber;
+    printf("Enter a number: ");
+    scanf("%d", &userNumber);
+    printf("You entered: %d\n\n", userNumber);
+    printf("Global variable: %d\n\n", globalVariable);
+    /* ================== ADVANCED DEMO ================== */
+    printf("=== ADVANCED C CONCEPTS ===\n\n");
+    pointerBasics();
+    pointerArithmetic();
+    stackVsHeap();
+    dynamicMemoryDemo();
+    structDemo();
+    printf("Global initialized: %d\n", global_initialized);
+    printf("Global uninitialized (BSS): %d\n", global_uninitialized);
+    return 0;
+}
+/*
+This part is not a working demo but you can copy & paste the code into your text editor: 
+some will work some won't. Some are deliberately broken with the task in mind of you debugging them.
+============================================================
+                C LANGUAGE CHEAT SHEET
+============================================================
+This file is BOTH
+1) A working C program
+2) A detailed explanation of core C concepts
+Compile:
+    gcc c_cheatsheet.c -o cheat
+Run:
+    ./cheat
+============================================================
+                    1. BASIC STRUCTURE
+============================================================
+Every C program starts with a main() function.
+Execution begins in main().
+We include libraries using #include.
+These give access to pre-written functions.
+#include <stdio.h>   // For input/output (printf, scanf)
+#include <stdlib.h>  // For rand(), srand(), malloc(), exit()
+#include <time.h>    // For time() used in random seeding
+============================================================
+                    2. DATA TYPES
+============================================================
+C is statically typed.
+You must declare the type of every variable.
+Basic data types:
+int         -> integer (usually 4 bytes)
+float       -> decimal (single precision)
+double      -> decimal (double precision, more accurate)
+char        -> single character
+void        -> no type / no return
+Modifiers:
+short       -> smaller integer
+long        -> larger integer
+unsigned    -> only positive values
+Examples:
+int globalVariable = 100;  // Global scope (accessible everywhere)
+============================================================
+                    3. FUNCTION DECLARATIONS
+============================================================
+A function must be declared before it is used.
+Syntax:
+return_type function_name(parameters);
+int add(int a, int b);                // Returns int
+void printMessage(void);              // Returns nothing
+int modifyValue(int x);
+int generateRandom(int min, int max);
+============================================================
+                    4. MAIN FUNCTION
+============================================================ 
+int main() {
+    printf("=== C CHEAT SHEET PROGRAM RUNNING ===\n\n");
+============================================================
+                        5. VARIABLES
+============================================================ 
+Syntax:
+        type variableName = value;
+    int age = 25;
+    float height = 5.9f;   // 'f' ensures float literal
+    double pi = 3.1415926535;
+    char grade = 'A';
+    printf("Age: %d\n", age);
+    printf("Height: %.1f\n", height);
+    printf("Pi: %.5lf\n", pi);
+    printf("Grade: %c\n\n", grade);
+    ============================================================
+                        6. IF / ELSE
+    ============================================================
+    Syntax:
+    if (condition) {
+        // code
+    } else if (condition) {
+        // code
+    } else {
+        // code
+    }
+    if (age >= 18) {
+        printf("Adult\n\n");
+    } else {
+        printf("Minor\n\n");
+    }
+    ============================================================
+                        7. LOOPS
+    ============================================================
+    1) for loop
+    2) while loop
+    3) do-while loop
+    // FOR LOOP
+    for (int i = 0; i < 3; i++) {
+        printf("For loop iteration: %d\n", i);
+    }
+    printf("\n");
+    // WHILE LOOP
+    int count = 0;
+    while (count < 3) {
+        printf("While loop iteration: %d\n", count);
+        count++;
+    }
+    printf("\n");
+    ============================================================
+                        8. FUNCTIONS
+    ============================================================
+    Functions allow reuse and modular design.
+    Format:
+    return_type function_name(parameters) {
+        // body
+        return value;
+    }
+    IMPORTANT CONCEPT:
+    C uses PASS BY VALUE.
+    That means:
+        A copy of the variable is passed.
+        Changes inside function DO NOT affect original
+        unless you use pointers.
+    int result = add(5, 3);
+    printf("5 + 3 = %d\n\n", result);
+    int original = 10;
+    int changed = modifyValue(original);
+    printf("Original value: %d\n", original);
+    printf("Returned modified value: %d\n\n", changed);
+    ============================================================
+            9. RETURNING DATA FROM FUNCTIONS (IN DEPTH)
+    ============================================================
+    A function can return:
+        - int
+        - float
+        - double
+        - char
+        - pointer
+        - struct
+        - etc.
+    When returning:
+        return expression;
+    What happens:
+        1. Expression is evaluated.
+        2. Value is copied to caller.
+        3. Function exits immediately.
+    Important:
+        You CANNOT return local variable addresses.
+        Example (WRONG):
+            int* bad() {
+                int x = 5;
+                return &x;  // BAD (x disappears after function ends)
+            }
+    Correct ways to return complex data:
+        - Return struct
+        - Use pointers
+        - Use dynamic memory (malloc)
+    ============================================================
+                    10. RANDOM NUMBERS
+    ============================================================
+    rand() -> generates pseudo-random number (0 to RAND_MAX)
+    IMPORTANT:
+        You MUST seed the random generator using srand().
+    srand(time(NULL));
+    If you don't seed:
+        You get same sequence every run.
+    srand(time(NULL));  // Seed once at program start
+    int randomNumber = generateRandom(1, 10);
+    printf("Random number (1-10): %d\n\n", randomNumber);
+    ============================================================
+                    11. USER INPUT
+    ============================================================
+    scanf() reads formatted input.
+    Example:
+        int x;
+        scanf("%d", &x);
+    IMPORTANT:
+        Use & (address-of operator) with scanf
+        because it needs memory address.
+    int userNumber;
+    printf("Enter a number: ");
+    scanf("%d", &userNumber);
+    printf("You entered: %d\n\n", userNumber);
+    ============================================================
+                    12. SCOPE
+    ============================================================
+    Scope = Where variable is accessible.
+    1) Local scope
+        Declared inside function or block
+        Exists only inside that block
+    2) Global scope
+        Declared outside all functions
+        Accessible everywhere
+    printf("Global variable: %d\n", globalVariable);
+    return 0;  // 0 means success
+}
+============================================================
+                FUNCTION DEFINITIONS
+============================================================
+int add(int a, int b) {
+    return a + b;
+}
+void printMessage(void) {
+    printf("Hello from function!\n");
+}
+int modifyValue(int x) {
+    x = x * 2;
+    return x;   // returns new value (original unaffected)
+}
+int generateRandom(int min, int max) {
+    /*
+    Formula to scale rand():
+    rand() % (max - min + 1) + min
+    Explanation:
+        rand() % range   -> 0 to range-1
+        + min            -> shift into correct range
+    return rand() % (max - min + 1) + min;
+}
+====================================================================
+                ADVANCED C CHEAT SHEET
+        Pointers • Structs • Memory • Stack • Heap
+====================================================================
+This file is BOTH:
+1) A working C program
+2) A deep explanation of advanced C concepts
+====================================================================
+                        MEMORY LAYOUT
+====================================================================
+A typical C program memory layout:
+
++------------------------+
+|        TEXT            |  (Compiled machine code)
++------------------------+
+|   GLOBAL / STATIC      |  (Initialized global variables)
++------------------------+
+|   BSS SEGMENT          |  (Uninitialized globals)
++------------------------+
+|        HEAP            |  (Dynamic memory - grows upward)
+|                        |
+|                        |
++------------------------+
+|                        |
+|                        |
+|        STACK           |  (Function calls - grows downward)
++------------------------+
+STACK:
+- Stores local variables
+- Stores function parameters
+- Stores return addresses
+- Automatically managed
+
+HEAP:
+- Used for dynamic memory
+- Manually managed (malloc/free)
+- Slower but flexible
+====================================================================
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+====================================================================
+                        GLOBAL VARIABLES
+====================================================================
+Stored in the GLOBAL segment (not stack).
+
+int global_initialized = 42;   // Global segment
+int global_uninitialized;      // BSS segment
+
+====================================================================
+                        STRUCT DEFINITIONS
+====================================================================
+Structs group related data together.
+Memory Layout Rule:
+- Members are stored in order
+- Compiler may insert PADDING for alignment
+struct Person {
+    char name[50];   // 50 bytes
+    int age;         // 4 bytes
+    double height;   // 8 bytes
+};
+====================================================================
+                        POINTER BASICS
+====================================================================
+A pointer is a variable that stores a memory address.
+Syntax:
+    type *pointerName;
+Example:
+    int *p;
+Meaning:
+    p stores the address of an int.
+Operators:
+    &  -> address-of
+    *  -> dereference (access value at address)
+void pointerBasics() {
+    printf("=== POINTER BASICS ===\n");
+    int x = 10;
+    int *ptr = &x;  // ptr stores address of x
+    printf("Value of x: %d\n", x);
+    printf("Address of x: %p\n", (void*)&x);
+    printf("ptr stores: %p\n", (void*)ptr);
+    printf("Value at ptr (*ptr): %d\n", *ptr);
+    // Modify through pointer
+    *ptr = 20;
+    printf("Modified x through pointer: %d\n\n", x);
+}
+====================================================================
+                    POINTER ARITHMETIC
+====================================================================
+When you add to a pointer:
+    ptr + 1
+It moves by sizeof(type).
+If ptr is int*:
+    ptr + 1 moves 4 bytes (typically)
+NOT 1 byte.
+void pointerArithmetic() {
+    printf("=== POINTER ARITHMETIC ===\n");
+    int arr[3] = {10, 20, 30};
+    int *ptr = arr;  // same as &arr[0]
+    printf("arr[0]: %d\n", *ptr);
+    printf("arr[1]: %d\n", *(ptr + 1));
+    printf("arr[2]: %d\n\n", *(ptr + 2));
+}
+====================================================================
+                    STACK VS HEAP
+====================================================================
+STACK:
+- int x;
+- Automatically freed
+- Fast
+- Limited size
+HEAP:
+- malloc()
+- Must call free()
+- Flexible size
+- Risk of leaks
+void stackVsHeap() {
+    printf("=== STACK VS HEAP ===\n");
+    int stackVar = 5;  // Stored on stack
+    int *heapVar = malloc(sizeof(int));  // Stored on heap
+    if (heapVar == NULL) {
+        printf("Memory allocation failed!\n");
+        return;
+    }
+    *heapVar = 100;
+    printf("Stack variable value: %d\n", stackVar);
+    printf("Heap variable value: %d\n", *heapVar);
+    free(heapVar);  // Always free heap memory!
+    printf("Heap memory freed.\n\n");
+}
+====================================================================
+                    DYNAMIC MEMORY FUNCTIONS
+====================================================================
+malloc(size)
+    Allocates memory (uninitialized)
+calloc(n, size)
+    Allocates memory and initializes to 0
+realloc(ptr, newSize)
+    Resizes existing memory block
+free(ptr)
+    Releases memory back to system
+void dynamicMemoryDemo() {
+    printf("=== DYNAMIC MEMORY ===\n");
+    int *array = malloc(3 * sizeof(int));
+    if (!array) return;
+    for (int i = 0; i < 3; i++) {
+        array[i] = i * 10;
+    }
+    printf("Original array:\n");
+    for (int i = 0; i < 3; i++) {
+        printf("%d ", array[i]);
+    }
+    // Resize array
+    array = realloc(array, 5 * sizeof(int));
+    printf("\nResized array (first 3 values preserved):\n");
+    for (int i = 0; i < 3; i++) {
+        printf("%d ", array[i]);
+    }
+    free(array);
+    printf("\nMemory freed.\n\n");
+}
+====================================================================
+                STRUCTS AND MEMORY LAYOUT
+====================================================================
+Struct memory size may include padding.
+Use:
+    sizeof(struct Person)
+void structDemo() {
+    printf("=== STRUCT DEMO ===\n");
+    struct Person p1;
+    strcpy(p1.name, "Alice");
+    p1.age = 30;
+    p1.height = 5.6;
+    printf("Name: %s\n", p1.name);
+    printf("Age: %d\n", p1.age);
+    printf("Height: %.1f\n", p1.height);
+    printf("Size of struct Person: %lu bytes\n\n", sizeof(struct Person));
+}
+====================================================================
+                COMMON POINTER MISTAKES
+====================================================================
+1) Using uninitialized pointer
+    int *p; *p = 5;   // CRASH
+2) Memory leak
+    malloc() without free()
+3) Double free
+    free(p);
+    free(p);  // UNDEFINED BEHAVIOR
+4) Dangling pointer
+    free(p);
+    *p = 10;  // INVALID (memory freed)
+Best Practice:
+    After free(p);
+    p = NULL;
+====================================================================
