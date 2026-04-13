@@ -1,0 +1,495 @@
+Python Cheatsheet – Part 1
+1. Basic Syntax
+# Single-line comment
+"""
+Multi-line
+comment
+"""
+print("Hello, World!")   # Output text
+Variables
+x = 10       # Integer
+y = 3.14     # Float
+name = "Alice"  # String
+flag = True  # Boolean
+Data Types
+Type	Example	Notes
+int	42	Whole numbers
+float	3.14	Decimal numbers
+str	"Python"	Strings of text
+bool	True/False	Boolean values
+list	[1,2,3]	Ordered, mutable
+tuple	(1,2,3)	Ordered, immutable
+set	{1,2,3}	Unordered, unique
+dict	{"a":1,"b":2}	Key-value pairs
+Type Conversion
+int("42")      # 42
+float(10)      # 10.0
+str(3.14)      # "3.14"
+list("abc")    # ['a','b','c']
+tuple([1,2,3]) # (1,2,3)
+2. Operators
+Arithmetic
++  -  *  /  //  %  **
+
+x = 7
+y = 3
+x + y   # 10
+x - y   # 4
+x * y   # 21
+x / y   # 2.3333
+x // y  # 2   (floor division)
+x % y   # 1   (modulus)
+x ** y  # 343 (power)
+Comparison
+==  !=  >  <  >=  <=
+Logical
+and, or, not
+True and False   # False
+not True         # False
+Membership
+in, not in
+'a' in 'apple'   # True
+3. Control Structures
+If/Else
+x = 10
+if x > 0:
+    print("Positive")
+elif x == 0:
+    print("Zero")
+else:
+    print("Negative")
+Loops
+# For loop
+for i in range(5):   # 0 to 4
+    print(i)
+
+# While loop
+count = 0
+while count < 5:
+    print(count)
+    count += 1
+Loop Control
+break    # Exit loop
+continue # Skip iteration
+pass     # Placeholder
+4. Data Structures
+Lists
+lst = [1, 2, 3]
+lst.append(4)       # [1,2,3,4]
+lst.insert(1, 10)   # [1,10,2,3,4]
+lst.remove(2)       # [1,10,3,4]
+lst.pop()           # Remove last
+lst.sort()          # Sort ascending
+lst.reverse()       # Reverse
+len(lst)            # 4
+Tuples
+t = (1,2,3)
+t[0]         # 1
+len(t)       # 3
+# t[0] = 10  # Error, immutable
+Sets
+s = {1,2,3,3}
+s.add(4)      # {1,2,3,4}
+s.remove(2)   # {1,3,4}
+s.union({5})  # {1,3,4,5}
+s.intersection({3,4,5})  # {3,4}
+Dictionaries
+d = {'a':1, 'b':2}
+d['a']         # 1
+d['c'] = 3     # add new key
+del d['b']     # remove key
+d.keys()       # dict_keys(['a','c'])
+d.values()     # dict_values([1,3])
+d.items()      # dict_items([('a',1),('c',3)])
+5. Comprehensions
+List Comprehension
+squares = [x**2 for x in range(5)]  # [0,1,4,9,16]
+evens = [x for x in range(10) if x % 2 == 0]  # [0,2,4,6,8]
+Dictionary Comprehension
+d = {x: x**2 for x in range(5)}  # {0:0,1:1,2:4,3:9,4:16}
+Set Comprehension
+s = {x**2 for x in range(5)}  # {0,1,4,9,16}
+6. Strings
+s = "Hello, World!"
+len(s)          # 13
+s.lower()       # "hello, world!"
+s.upper()       # "HELLO, WORLD!"
+s.strip()       # Remove spaces
+s.replace("H","J")  # "Jello, World!"
+s.split(",")    # ['Hello',' World!']
+" ".join(['a','b','c'])  # "a b c"
+s[0]            # 'H'
+s[-1]           # '!'
+s[0:5]          # 'Hello' (slice)
+String Formatting
+name = "Alice"
+age = 25
+f"My name is {name} and I'm {age} years old"
+"My name is {} and I'm {}".format(name, age)
+"My name is %s and I'm %d" % (name, age)
+1. Basic Syntax
+# Single-line comment
+"""
+Multi-line
+comment
+"""
+print("Hello, World!")   # Output text
+
+Variables
+x = 10       # Integer
+y = 3.14     # Float
+name = "Alice"  # String
+flag = True  # Boolean
+
+Data Types
+Type    Example Notes
+int 42  Whole numbers
+float   3.14    Decimal numbers
+str "Python"    Strings of text
+bool    True/False  Boolean values
+list    [1,2,3] Ordered, mutable
+tuple   (1,2,3) Ordered, immutable
+set {1,2,3} Unordered, unique
+dict    {"a":1,"b":2}   Key-value pairs
+Type Conversion
+
+int("42")      # 42
+float(10)      # 10.0
+str(3.14)      # "3.14"
+list("abc")    # ['a','b','c']
+tuple([1,2,3]) # (1,2,3)
+
+2. Operators
+Arithmetic
+
++  -  *  /  //  %  **
+
+x = 7
+y = 3
+x + y   # 10
+x - y   # 4
+x * y   # 21
+x / y   # 2.3333
+x // y  # 2   (floor division)
+x % y   # 1   (modulus)
+x ** y  # 343 (power)
+
+Comparison
+
+==  !=  >  <  >=  <=
+
+Logical
+
+and, or, not
+True and False   # False
+not True         # False
+
+Membership
+
+in, not in
+'a' in 'apple'   # True
+
+3. Control Structures
+If/Else
+
+x = 10
+if x > 0:
+    print("Positive")
+elif x == 0:
+    print("Zero")
+else:
+    print("Negative")
+
+Loops
+
+# For loop
+for i in range(5):   # 0 to 4
+    print(i)
+
+# While loop
+count = 0
+while count < 5:
+    print(count)
+    count += 1
+
+Loop Control
+
+break    # Exit loop
+continue # Skip iteration
+pass     # Placeholder
+
+4. Data Structures
+Lists
+
+lst = [1, 2, 3]
+lst.append(4)       # [1,2,3,4]
+lst.insert(1, 10)   # [1,10,2,3,4]
+lst.remove(2)       # [1,10,3,4]
+lst.pop()           # Remove last
+lst.sort()          # Sort ascending
+lst.reverse()       # Reverse
+len(lst)            # 4
+
+Tuples
+
+t = (1,2,3)
+t[0]         # 1
+len(t)       # 3
+# t[0] = 10  # Error, immutable
+
+Sets
+
+s = {1,2,3,3}
+s.add(4)      # {1,2,3,4}
+s.remove(2)   # {1,3,4}
+s.union({5})  # {1,3,4,5}
+s.intersection({3,4,5})  # {3,4}
+
+Dictionaries
+
+d = {'a':1, 'b':2}
+d['a']         # 1
+d['c'] = 3     # add new key
+del d['b']     # remove key
+d.keys()       # dict_keys(['a','c'])
+d.values()     # dict_values([1,3])
+d.items()      # dict_items([('a',1),('c',3)])
+
+5. Comprehensions
+List Comprehension
+
+squares = [x**2 for x in range(5)]  # [0,1,4,9,16]
+evens = [x for x in range(10) if x % 2 == 0]  # [0,2,4,6,8]
+
+Dictionary Comprehension
+
+d = {x: x**2 for x in range(5)}  # {0:0,1:1,2:4,3:9,4:16}
+
+Set Comprehension
+
+s = {x**2 for x in range(5)}  # {0,1,4,9,16}
+
+6. Strings
+
+s = "Hello, World!"
+len(s)          # 13
+s.lower()       # "hello, world!"
+s.upper()       # "HELLO, WORLD!"
+s.strip()       # Remove spaces
+s.replace("H","J")  # "Jello, World!"
+s.split(",")    # ['Hello',' World!']
+" ".join(['a','b','c'])  # "a b c"
+s[0]            # 'H'
+s[-1]           # '!'
+s[0:5]          # 'Hello' (slice)
+
+String Formatting
+
+name = "Alice"
+age = 25
+f"My name is {name} and I'm {age} years old"
+"My name is {} and I'm {}".format(name, age)
+"My name is %s and I'm %d" % (name, age)
+
+7. Functions
+Defining Functions
+
+def greet(name):
+    """Function with a docstring"""
+    return f"Hello, {name}!"
+
+greet("Alice")  # "Hello, Alice!"
+
+Arguments
+
+def add(a, b=0, *args, **kwargs):
+    """a and b are normal, *args is extra positional, **kwargs is extra keyword"""
+    print("a:", a)
+    print("b:", b)
+    print("args:", args)
+    print("kwargs:", kwargs)
+    return a + b + sum(args)
+
+add(1, 2, 3, 4, x=10, y=20)
+
+Lambda Functions
+
+square = lambda x: x**2
+square(5)  # 25
+
+# Sorting with lambda
+lst = [(1,2),(3,1),(5,0)]
+lst.sort(key=lambda x: x[1])  # Sort by second element
+
+8. Modules & Packages
+Importing
+
+import math
+import math as m         # alias
+from math import sqrt    # only sqrt
+from math import *       # all names (not recommended)
+
+math.sqrt(16)            # 4.0
+m.pi                     # 3.1415...
+
+Creating Modules
+
+# mymodule.py
+def add(a, b):
+    return a + b
+
+# main.py
+import mymodule
+mymodule.add(2,3)  # 5
+
+Useful Built-in Modules
+Module  Purpose
+os  Operating system operations
+sys System-specific parameters & functions
+datetime    Date and time handling
+random  Random numbers
+json    JSON encoding/decoding
+re  Regular expressions
+9. File Handling
+
+# Writing to a file
+with open("file.txt", "w") as f:
+    f.write("Hello\nWorld")
+
+# Reading a file
+with open("file.txt", "r") as f:
+    content = f.read()
+
+# Read line by line
+with open("file.txt") as f:
+    for line in f:
+        print(line.strip())
+
+10. Error Handling
+
+try:
+    x = 1 / 0
+except ZeroDivisionError:
+    print("Cannot divide by zero")
+except Exception as e:
+    print("Error:", e)
+finally:
+    print("Always runs")
+
+11. Object-Oriented Programming (OOP)
+Classes & Objects
+
+class Person:
+    species = "Human"  # Class variable
+
+    def __init__(self, name, age):
+        self.name = name  # Instance variable
+        self.age = age
+
+    def greet(self):
+        return f"Hello, my name is {self.name}"
+
+# Create instance
+p = Person("Alice", 25)
+p.greet()  # "Hello, my name is Alice"
+p.age      # 25
+Person.species  # "Human"
+
+Inheritance
+
+class Student(Person):
+    def __init__(self, name, age, student_id):
+        super().__init__(name, age)
+        self.student_id = student_id
+
+s = Student("Bob", 20, "S123")
+s.greet()  # Inherited method
+
+Special Methods
+
+class Vector:
+    def __init__(self, x, y):
+        self.x, self.y = x, y
+
+    def __add__(self, other):
+        return Vector(self.x + other.x, self.y + other.y)
+
+    def __repr__(self):
+        return f"Vector({self.x}, {self.y})"
+
+v1 = Vector(1,2)
+v2 = Vector(3,4)
+v1 + v2  # Vector(4,6)
+
+12. Iterators & Generators
+
+# Iterator
+lst = [1,2,3]
+it = iter(lst)
+next(it)  # 1
+next(it)  # 2
+
+# Generator
+def gen_numbers(n):
+    for i in range(n):
+        yield i  # lazy evaluation
+
+for num in gen_numbers(5):
+    print(num)
+
+13. Decorators
+
+def decorator(func):
+    def wrapper(*args, **kwargs):
+        print("Before function")
+        result = func(*args, **kwargs)
+        print("After function")
+        return result
+    return wrapper
+
+@decorator
+def say_hello():
+    print("Hello!")
+
+say_hello()
+
+14. Context Managers
+
+# Using 'with' for files ensures proper cleanup
+with open("file.txt", "w") as f:
+    f.write("Hello")
+
+# Custom context manager
+class MyContext:
+    def __enter__(self):
+        print("Enter")
+        return self
+    def __exit__(self, exc_type, exc_value, traceback):
+        print("Exit")
+
+with MyContext() as m:
+    print("Inside context")
+
+15. Advanced Features
+List Unpacking
+
+a, b, *rest = [1,2,3,4]
+# a=1, b=2, rest=[3,4]
+
+Zip & Enumerate
+
+names = ["Alice", "Bob"]
+ages = [25, 30]
+list(zip(names, ages))  # [('Alice',25),('Bob',30)]
+for i, name in enumerate(names):
+    print(i, name)
+
+Ternary Operator
+
+x = 10
+result = "Positive" if x > 0 else "Non-positive"
+
+#Type hinting
+
+def add(a: int, b: int) -> int:
+    return a + b
